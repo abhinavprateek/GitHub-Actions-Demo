@@ -50,50 +50,56 @@ alt="A blue screen with white text and red and yellow text Description automatic
     job and add the following:\
     Replace the url with your url from surge (without the “\<” and “\>”
     symbols)\
-    \
-    deploy:\
-    runs-on: ubuntu-latest\
-    needs: build\
-    environment:\
-    name: production\
-    url: http://\< replace-with-your-surge-url\>.surge.sh\
-    \
+    
+    ```yaml
+    deploy:
+      runs-on: ubuntu-latest
+      needs: build
+      environment:
+        name: production
+        url: http://<replace-with-your-surge-url\>.surge.sh
+    ```
+
     <img src="./images/media/image68.png"
     style="width:4.05208in;height:1.375in"
     alt="A screen shot of a computer Description automatically generated" />
 
 9)  Now we are ready to add the steps. Let’s download the build artifact
     from the “build” job.\
-    \
-    steps:\
-    - name: Download the Build Artifact\
-    uses: <actions/download-artifact@v4.1.2>\
-    with:\
-    name: build
+    
+    ```yaml
+    steps:
+      - name: Download the Build Artifact
+        uses: <actions/download-artifact@v4.1.2>
+        with:
+          name: build
+    ```
 
 10) Next, lets deploy our application. Add another step with the
     following code:\
     Replace the domain with your url from surge (without the “\<” and
     “\>” symbols)\
-    \
-    - name: deploy to surge\
-    run: npx surge --project '.' --domain \<
-    replace-with-your-surge-url\>.surge.sh\
-    env:\
-    SURGE_LOGIN: \${{ secrets.SURGE_LOGIN }}\
-    SURGE_TOKEN: \${{ secrets.SURGE_TOKEN }}
+    
+    ```yaml
+    - name: deploy to surge
+      run: npx surge --project '.' --domain <replace-with-your-surge-url>.surge.sh
+      env:
+        SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+        SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }
+    ```
 
 <img src="./images/media/image69.png"
 style="width:5.97917in;height:3.55208in"
 alt="A computer screen shot of a program Description automatically generated" />
 
-11) Change the trigger from “workflow_dispatch” to “push: branches:
-    -main”\
-    \
-    on:\
-    push:\
-    branches:\
-    - main
+11) Change the trigger from “workflow_dispatch” to “push: branches: -main”\
+    
+    ```yaml
+    on:
+      push:
+        branches:
+          - main
+    ```
 
 <img src="./images/media/image70.png"
 style="width:2.89583in;height:1.15625in"

@@ -56,10 +56,10 @@ alt="A screenshot of a computer Description automatically generated" />
 
 6)  Go back to the tab where we are editing the code of your workflow
     and add this action to a step\
-    \
-    - name: checkout\
-    uses: actions/checkout@v4\
-    \
+    ```yaml
+    - name: checkout
+      uses: actions/checkout@v4
+    ```
     <img src="./images/media/image32.png"
     style="width:5.53125in;height:4.16667in"
     alt="A screenshot of a computer program Description automatically generated" />
@@ -100,11 +100,11 @@ alt="A screenshot of a computer Description automatically generated" />
 10) Create another step with the name “time” and add run with the
     following code:
 
-\- name: time\
-run: \|\
-echo "The time of the greeting was at: \${{
-steps.print-to-log.outputs.time }}"\
-\
+```yaml
+- name: time
+  run: |
+    echo "The time of the greeting was at: ${{steps.print-to-log.outputs.time }}"
+```
 <img src="./images/media/image37.png"
 style="width:5.875in;height:0.6875in"
 alt="A black background with white text Description automatically generated" />
@@ -179,11 +179,11 @@ alt="A black background with white text Description automatically generated" />
     create a new step with name “environment variables”\
     next add “env:” and the step variable “STEP_VAR” with the following
     code:\
-    \
-    - name: environment variables\
-    env:\
-    STEP_VAR: "This variable is declared at the step level"\
-    \
+    ```yaml
+    - name: environment variables
+      env:
+        STEP_VAR: "This variable is declared at the step level"\
+    ```
     <img src="./images/media/image44.png"
     style="width:4.40625in;height:0.58333in" />
 
